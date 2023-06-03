@@ -3,7 +3,8 @@
     $connect = mysqli_connect("localhost", "root", "", "perpusweb_xirpla_rizkyferdiansyah");
     // ambil data mahasiswa
     $result = mysqli_query($connect, "SELECT * FROM t_buku");
-    var_dump($result);
+    // ambil data dari object result
+    $array = mysqli_fetch_array($result);
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +50,7 @@
 		</div>
 		
 		<div class="col-sm-2">
-			<a href="" class="btn btn-success float-right">tambah</a>
+			<a href="halaman_form.html" class="btn btn-success float-right">tambah</a>
 		</div>
 
 	</div>
@@ -65,13 +66,21 @@
 					<th>Gambar</th>
 					<th>Aksi</th>
 				</tr>
+                <?php 
+                    $angka=1; 
+                    while($array = mysqli_fetch_array($result)):               
+                ?>
 				<tr>
-					<td>1</td>
-					<td>judul 1</td>
-					<td>kategori 1</td>
-					<td>penerbit 11</td>
+					<td><?=$angka++;?></td>
+					<td><?=$array["buku_judul"]?></td>
+					<td><?=$array["buku_jenis"]?></td>
+					<td><?=$array["buku_penerbit"]?></td>
 					<td>
-						<img src="" class="rounded" style="width:100px;">
+                    <?php if($array["buku_gambar"] == ""){?>
+                    <img src="../assets/upload/default.jpg" class="rounded" style="width:100px;">;
+                    <?php }else{ ?>
+                    <img src="../assets/upload/<?= $array["buku_gambar"]?>" class="rounded" style="width:100px;">;
+                    <?php } ?>
 					</td>
 					<td>
 						<a href="" class="btn btn-primary">Detail</a>
@@ -79,21 +88,7 @@
 						<a href="" class="btn btn-danger">Hapus</a>
 					</td>
 				</tr>
-				<tr>
-					<td>2</td>
-					<td>judul 2</td>
-					<td>kategori 2</td>
-					<td>penerbit 2</td>
-					<td>
-						<img src="" class="rounded" style="width:100px;">
-					</td>
-					<td>
-						<a href="" class="btn btn-primary">Detail</a>
-						<a href="" class="btn btn-warning">Edit</a>
-						<a href="" class="btn btn-danger">Hapus</a>
-					</td>
-				</tr>
-
+				<?php endwhile ?>
 
             </table>
 
