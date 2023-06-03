@@ -1,0 +1,1 @@
+<?php $connect = mysqli_connect("localhost", "root", "", "perpusweb_xirpla_rizkyferdiansyah"); ?>

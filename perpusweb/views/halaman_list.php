@@ -1,10 +1,9 @@
 <?php
     //koneksi ke database
-    $connect = mysqli_connect("localhost", "root", "", "perpusweb_xirpla_rizkyferdiansyah");
+	require_once('../config/config.php');
     // ambil data mahasiswa
     $result = mysqli_query($connect, "SELECT * FROM t_buku");
     // ambil data dari object result
-    $array = mysqli_fetch_array($result);
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +49,7 @@
 		</div>
 		
 		<div class="col-sm-2">
-			<a href="halaman_form.html" class="btn btn-success float-right">tambah</a>
+			<a href="halaman_form.php" class="btn btn-success float-right">tambah</a>
 		</div>
 
 	</div>
@@ -68,7 +67,7 @@
 				</tr>
                 <?php 
                     $angka=1; 
-                    while($array = mysqli_fetch_array($result)):               
+                    while($array = mysqli_fetch_array($result)):      
                 ?>
 				<tr>
 					<td><?=$angka++;?></td>
@@ -77,14 +76,14 @@
 					<td><?=$array["buku_penerbit"]?></td>
 					<td>
                     <?php if($array["buku_gambar"] == ""){?>
-                    <img src="../assets/upload/default.jpg" class="rounded" style="width:100px;">;
+                    <img src="../assets/upload/default.jpg" class="rounded" style="width:100px;">
                     <?php }else{ ?>
-                    <img src="../assets/upload/<?= $array["buku_gambar"]?>" class="rounded" style="width:100px;">;
+                    <img src="../assets/upload/<?= $array["buku_gambar"]?>" class="rounded" style="width:100px;">
                     <?php } ?>
 					</td>
 					<td>
 						<a href="" class="btn btn-primary">Detail</a>
-						<a href="" class="btn btn-warning">Edit</a>
+						<a href="halaman_edit.php?buku_kode=<?= $array['buku_kode'] ?>" class="btn btn-warning">Edit</a>
 						<a href="" class="btn btn-danger">Hapus</a>
 					</td>
 				</tr>
