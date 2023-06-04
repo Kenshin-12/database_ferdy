@@ -43,20 +43,20 @@ if (isset($_GET['buku_kode'])) {
 		<div class="col-sm-4">
 			<img src="" class="rounded" style="width:100%;">
 			<h4 class="text-center text-info"><?=$array["buku_kode"]?></h4>
-
+					<div>
+						<?php if($array["buku_gambar"] == ""){?>
+						<img src="../assets/upload/default.jpg" class="rounded" style="width:100%;padding-bottom:1rem;">
+						<?php }else{ ?>
+						<img src="../assets/upload/<?= $array["buku_gambar"]?>" class="rounded" style="width:100%;padding-bottom:1rem;">
+						<?php } ?>
+					</div>
 			<div class="row justify-content-center" style="margin-top: 30px;">
 				<a href="halaman_list.php" class="btn btn-success">kembali</a>			
 			</div>
 		</div>
 
 			<div class="col-sm-8">
-					<div>
-						<?php if($array["buku_gambar"] == ""){?>
-						<img src="../assets/upload/default.jpg" class="rounded" style="width:35%;padding-bottom:1rem;">
-						<?php }else{ ?>
-						<img src="../assets/upload/<?= $array["buku_gambar"]?>" class="rounded" style="width:35%;padding-bottom:1rem;">
-						<?php } ?>
-					</div>
+					
 				<h6 class="text-info">Judul</h6>
 					<h3><?=$array["buku_judul"]?></h3>
 
