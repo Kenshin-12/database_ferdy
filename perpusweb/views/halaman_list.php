@@ -94,6 +94,7 @@
 					<th>Aksi</th>
 				</tr>
 				
+				<!-- function untuk menampilkan data setelah dicari -->
                 <?php 
 					//menampilkan data
                     $angka=1; 
