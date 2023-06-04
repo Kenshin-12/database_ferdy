@@ -17,6 +17,7 @@
 		// header("Location: index.php");
 		// exit();
 
+	//FUNCTION SEARCH 
 	// Mendefinisikan variabel pencarian
 	$search = "";
 
@@ -67,6 +68,7 @@
 	<h3>LIST Data Buku</h3>
 
 	<div class="row">
+		<!-- untuk input mencai -->
 		<div class="col-sm-10">
 			<form  method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="form-inline" style="margin-bottom:10px;">
 				<input type="text" name="search" class="form-control" value="<?php echo $search; ?>">
