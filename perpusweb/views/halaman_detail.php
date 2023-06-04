@@ -49,26 +49,34 @@ if (isset($_GET['buku_kode'])) {
 			</div>
 		</div>
 
-		<div class="col-sm-8">
+			<div class="col-sm-8">
+					<div>
+						<?php if($array["buku_gambar"] == ""){?>
+						<img src="../assets/upload/default.jpg" class="rounded" style="width:35%;padding-bottom:1rem;">
+						<?php }else{ ?>
+						<img src="../assets/upload/<?= $array["buku_gambar"]?>" class="rounded" style="width:35%;padding-bottom:1rem;">
+						<?php } ?>
+					</div>
+				<h6 class="text-info">Judul</h6>
+					<h3><?=$array["buku_judul"]?></h3>
 
-			<h6 class="text-info">Judul</h6>
-				<h3><?=$array["buku_judul"]?></h3>
+				<h6 class="text-info">Penerbit</h6>
+					<p><?=$array["buku_penerbit"]?></p>
 
-			<h6 class="text-info">Penerbit</h6>
-				<p><?=$array["buku_penerbit"]?></p>
+				<h6 class="text-info">Jenis Buku</h6>
+					<p><?=$array["buku_jenis"]?></p>
 
-			<h6 class="text-info">Jenis Buku</h6>
-				<p><?=$array["buku_jenis"]?></p>
+				<h6 class="text-info">Genre Buku</h6>		
+					<p><?=$array["buku_genre"]?></p>
 
-			<h6 class="text-info">Genre Buku</h6>		
-				<p><?=$array["buku_genre"]?></p>
+				<h6 class="text-info">Stok</h6>
+					<p><?=$array["buku_stok"]?></p>
 
-			<h6 class="text-info">Stok</h6>
-				<p><?=$array["buku_stok"]?></p>
-
-			<h6 class="text-info">Sinopsis</h6>
-				<p><?=$array["buku_sinopsis"]?></p>
-		</div>
+				<h6 class="text-info">Sinopsis</h6>
+					<p><?=$array["buku_sinopsis"]?></p>
+				<div>
+				</div>
+			</div>
 	</div>
 </div>
 </body>
