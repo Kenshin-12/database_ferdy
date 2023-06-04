@@ -2,7 +2,9 @@
 //koneksi ke database
 require_once('../config/config.php');
 
+// Mengecek apakah ada parameter 'buku_kode' yang dikirimkan
 if (isset($_GET['buku_kode'])) {
+	// Mengambil nilai parameter 'buku_kode'
 	$get_query = "SELECT * FROM t_buku WHERE buku_kode='$_GET[buku_kode]';";
 	$buku = mysqli_query($connect, $get_query)->fetch_assoc();
 	$result = mysqli_query($connect, $get_query);
@@ -33,9 +35,8 @@ if (isset($_GET['buku_kode'])) {
 	</ul>
 </nav>
 <!-- END NAVIGASI; -->
-
 <div class="container" style="margin-top:30px;">
-
+	<!-- menampilkan detail buku -->
 	<h3>Detail Data</h3>
 
 	<div class="row justify-content-center">

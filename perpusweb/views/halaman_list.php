@@ -1,7 +1,7 @@
 <?php
     //koneksi ke database
 	require_once('../config/config.php');
-    // ambil data mahasiswa
+    // ambil data buku
     $result = mysqli_query($connect, "SELECT * FROM t_buku");
     // ambil data dari object result
 	// Mengecek apakah ada parameter 'id' yang dikirimkan
@@ -93,9 +93,10 @@
 				</tr>
 				
                 <?php 
+					//menampilkan data
                     $angka=1; 
                     while($array = mysqli_fetch_array($result)): 
-						//mendapatkan data yg dicari
+						//menampilkan data yg dicari
 						if (isset($_GET['search'])) {
 							if (mysqli_num_rows($result) > 0) {
 							//    echo "<ul>";

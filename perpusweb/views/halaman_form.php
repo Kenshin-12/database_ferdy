@@ -1,25 +1,39 @@
 <?php
 require_once('../config/config.php');
+
+// Mengecek apakah tombol 'simpan' telah diklik
 if (isset($_POST['simpan'])) {
+	// Menggabungkan nilai-nilai genre buku menjadi satu string
 	$genre_to_post = implode(', ', $_POST['buku_genre']);
+	// Membuat query untuk menyimpan data buku ke dalam tabel t_buku
 	$query = "INSERT INTO t_buku (buku_kode, buku_judul, buku_penerbit, buku_jenis, buku_genre, buku_stok, buku_sinopsis) VALUES 
 			('$_POST[buku_kode]', '$_POST[buku_judul]', '$_POST[buku_penerbit]', '$_POST[buku_jenis]', '$genre_to_post','$_POST[buku_stok]', '$_POST[buku_sinopsis]');";
+
+	// Mengecek apakah ada file gambar yang diunggah dan tidak ada kesalahan pada proses upload
 	if (isset($_FILES['buku_gambar']) && $_FILES['buku_gambar']['error'] !== 4) {
+		// Mendapatkan informasi file gambar yang diunggah
 		$gambar = $_FILES['buku_gambar'];
+		// Mendapatkan direktori tujuan penyimpanan file gambar
 		$direktori = dirname(__FILE__, 2) . '/assets/upload/';
+		// Menghasilkan nama unik untuk file gambar
 		$nama_file = uniqid() . '_' . $gambar['name'];
+		// Menggabungkan direktori dengan nama file gambar	
 		$destinasi = $direktori . $nama_file;
+		// Memindahkan file gambar dari lokasi sementara ke destinasi yang ditentukan
 		move_uploaded_file($gambar['tmp_name'], $destinasi);
+		// Mengubah query untuk menyertakan nama file gambar saat menyimpan data buku
 		$query = "INSERT INTO t_buku (buku_kode, buku_judul, buku_penerbit, buku_jenis, buku_genre, buku_stok, buku_sinopsis, buku_gambar) VALUES 
 				('$_POST[buku_kode]', '$_POST[buku_judul]', '$_POST[buku_penerbit]', '$_POST[buku_jenis]', '$genre_to_post','$_POST[buku_stok]', '$_POST[buku_sinopsis]', '$nama_file');";
 	}
 	$result = mysqli_query($connect, $query);
 	if ($result) {
+		// Menampilkan pesan berhasil dan mengarahkan pengguna ke halaman list buku
 		echo "<script type='text/javascript'>";
 		echo "alert('Berhasil tambah buku');";
 		echo "window.location.href='halaman_list.php'";
 		echo "</script>";
 	} else {
+		// Menampilkan pesan gagal dan mengarahkan pengguna ke halaman sebelum
 		echo "<script type='text/javascript'>";
 		echo "alert('Buku gagal ditambahkan');";
 		echo "window.history.back();";
