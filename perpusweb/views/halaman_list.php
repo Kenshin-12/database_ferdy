@@ -4,6 +4,32 @@
     // ambil data mahasiswa
     $result = mysqli_query($connect, "SELECT * FROM t_buku");
     // ambil data dari object result
+	// Mengecek apakah ada parameter 'id' yang dikirimkan
+	// if (isset($_GET['buku_kode'])) {
+	// 	// Mengambil nilai parameter 'id'
+	// 	$id = $_GET['buku_kode'];
+	
+		// Menghapus data dari basis data berdasarkan id
+		// $query = "DELETE FROM t_buku buku_kode='$_GET[buku_kode]" . $id;
+		// mysqli_query($koneksi, $query);
+	
+		// Mengarahkan kembali ke halaman utama setelah menghapus data
+		// header("Location: index.php");
+		// exit();
+
+	// Mendefinisikan variabel pencarian
+	$search = "";
+
+	// Mengecek apakah ada parameter 'search' yang dikirimkan
+	if (isset($_GET['search'])) {
+	// Mengambil nilai parameter 'search'
+	$search = $_GET['search'];
+
+	// Mendapatkan data dari basis data berdasarkan pencarian
+	$query = "SELECT * FROM t_buku WHERE buku_judul LIKE '%" . $search . "%'";
+	$result = mysqli_query($connect, $query);
+}
+	
 ?>
 
 <!DOCTYPE html>
@@ -42,8 +68,8 @@
 
 	<div class="row">
 		<div class="col-sm-10">
-			<form class="form-inline" style="margin-bottom:10px;">
-				<input type="text" name="" class="form-control">
+			<form  method="GET" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="form-inline" style="margin-bottom:10px;">
+				<input type="text" name="search" class="form-control" value="<?php echo $search; ?>">
 				<button type="submit" class="btn btn-primary" style="margin-left:10px;">Submit</button>
 			</form>
 		</div>
@@ -65,9 +91,20 @@
 					<th>Gambar</th>
 					<th>Aksi</th>
 				</tr>
+				
                 <?php 
                     $angka=1; 
-                    while($array = mysqli_fetch_array($result)):      
+                    while($array = mysqli_fetch_array($result)): 
+						//mendapatkan data yg dicari
+						if (isset($_GET['search'])) {
+							if (mysqli_num_rows($result) > 0) {
+							//    echo "<ul>";
+							   while ($row = mysqli_fetch_assoc($result)) {
+								//   echo "<li>" . $row['nama'] . "</li>";
+							   }
+							//    echo "</ul>";
+							} 
+						 }     
                 ?>
 				<tr>
 					<td><?=$angka++;?></td>
@@ -82,9 +119,9 @@
                     <?php } ?>
 					</td>
 					<td>
-						<a href="" class="btn btn-primary">Detail</a>
+						<a href="halaman_detail.php?buku_kode=<?= $array['buku_kode'] ?>" class="btn btn-primary">Detail</a>
 						<a href="halaman_edit.php?buku_kode=<?= $array['buku_kode'] ?>" class="btn btn-warning">Edit</a>
-						<a href="" class="btn btn-danger">Hapus</a>
+						<a href="halaman_hapus.php?buku_kode=<?= $array['buku_kode'] ?>" class="btn btn-danger">Hapus</a>
 					</td>
 				</tr>
 				<?php endwhile ?>

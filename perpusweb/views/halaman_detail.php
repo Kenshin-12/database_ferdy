@@ -1,3 +1,15 @@
+<?php
+//koneksi ke database
+require_once('../config/config.php');
+
+if (isset($_GET['buku_kode'])) {
+	$get_query = "SELECT * FROM t_buku WHERE buku_kode='$_GET[buku_kode]';";
+	$buku = mysqli_query($connect, $get_query)->fetch_assoc();
+	$result = mysqli_query($connect, $get_query);
+	$array = mysqli_fetch_array($result);
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,32 +41,32 @@
 	<div class="row justify-content-center">
 		<div class="col-sm-4">
 			<img src="" class="rounded" style="width:100%;">
-			<h4 class="text-center text-info">contoh Kode data</h4>
+			<h4 class="text-center text-info"><?=$array["buku_kode"]?></h4>
 
 			<div class="row justify-content-center" style="margin-top: 30px;">
-				<a href="" class="btn btn-success">kembali</a>			
+				<a href="halaman_list.php" class="btn btn-success">kembali</a>			
 			</div>
 		</div>
 
 		<div class="col-sm-8">
 
 			<h6 class="text-info">Judul</h6>
-				<h3>contoh judul</h3>
+				<h3><?=$array["buku_judul"]?></h3>
 
 			<h6 class="text-info">Penerbit</h6>
-				<p>contoh Penerbit</p>
+				<p><?=$array["buku_penerbit"]?></p>
 
 			<h6 class="text-info">Jenis Buku</h6>
-				<p>contoh jenis</p>
+				<p><?=$array["buku_jenis"]?></p>
 
 			<h6 class="text-info">Genre Buku</h6>		
-				<p>contoh genre</p>
+				<p><?=$array["buku_genre"]?></p>
 
 			<h6 class="text-info">Stok</h6>
-				<p>contoh stok</p>
+				<p><?=$array["buku_stok"]?></p>
 
 			<h6 class="text-info">Sinopsis</h6>
-				<p>contoh sinopsis</p>
+				<p><?=$array["buku_sinopsis"]?></p>
 		</div>
 	</div>
 </div>

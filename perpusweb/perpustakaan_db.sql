@@ -1,6 +1,6 @@
 -- MySQL dump 10.16  Distrib 10.1.35-MariaDB, for Win32 (AMD64)
 --
--- Host: localhost    Database: perpustakaan_xirplb_1819
+-- Host: localhost    Database: perpusweb_xirpla_rizkyferdiansyah
 -- ------------------------------------------------------
 -- Server version	10.1.35-MariaDB
 
@@ -16,12 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `perpustakaan_xirplb_1819`
+-- Current Database: `perpusweb_xirpla_rizkyferdiansyah`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `perpustakaan_xirplb_1819` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `perpusweb_xirpla_rizkyferdiansyah` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-USE `perpustakaan_xirplb_1819`;
+USE `perpusweb_xirpla_rizkyferdiansyah`;
 
 --
 -- Table structure for table `t_buku`
